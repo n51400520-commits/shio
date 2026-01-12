@@ -1,6 +1,4 @@
-// app.js
-
-// Данные планет и проектов
+// Планеталар массиві
 const planets = [
   { id: 'mercury', name: 'Меркурий', img: 'assets/mercury.png', projectId: 'p1' },
   { id: 'venus',   name: 'Шолпан',   img: 'assets/venus.png',   projectId: 'p2' },
@@ -8,6 +6,7 @@ const planets = [
   { id: 'mars',    name: 'Марс',     img: 'assets/mars.png',    projectId: 'p4' },
 ];
 
+// Жобалар массиві
 const projects = [
   { id: 'p1', title: 'Фронтенд — UI Kit', category: 'frontend', desc: 'Компоненттер кітапханасы, адаптивті дизайн.' },
   { id: 'p2', title: 'Дизайн — Брендинг', category: 'design',   desc: 'Логотип, түстер палитрасы, гайдлайн.' },
@@ -15,25 +14,7 @@ const projects = [
   { id: 'p4', title: 'Ойындар — Mini Game', category: 'games',  desc: 'Canvas, анимациялар, физика.' },
 ];
 
-// View Transition навигация (якоря)
-document.querySelectorAll('[data-nav]').forEach(el => {
-  el.addEventListener('click', (e) => {
-    const href = el.getAttribute('href');
-    if (!href || !href.startsWith('#')) return;
-    e.preventDefault();
-    if (document.startViewTransition) {
-      document.startViewTransition(() => {
-        location.hash = href;
-        document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    } else {
-      location.hash = href;
-      document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-// Рендер карусели
+// Карусель рендер
 const track = document.getElementById('carouselTrack');
 function renderPlanets() {
   track.innerHTML = '';
@@ -41,14 +22,11 @@ function renderPlanets() {
     const item = document.createElement('button');
     item.className = 'planet';
     item.setAttribute('data-project', p.projectId);
-    item.innerHTML = `
-      <img src="${p.img}" alt="${p.name}" />
-      <span>${p.name}</span>
-    `;
+    item.innerHTML = `<img src="${p.img}" alt="${p.name}" /><span>${p.name}</span>`;
     item.addEventListener('click', () => openProjectModal(p.projectId));
     track.appendChild(item);
   });
-  // Бесконечность: клонируем для плавного скролла
+  // Клонируем для бесконечности
   planets.forEach(p => {
     const clone = track.querySelector(`.planet[data-project="${p.projectId}"]`).cloneNode(true);
     track.appendChild(clone);
@@ -56,7 +34,7 @@ function renderPlanets() {
   // Автопрокрутка
   let offset = 0;
   function tick() {
-    offset += 0.3; // скорость
+    offset += 0.3;
     track.scrollLeft = offset;
     if (offset >= track.scrollWidth / 2) offset = 0;
     requestAnimationFrame(tick);
@@ -65,7 +43,7 @@ function renderPlanets() {
 }
 renderPlanets();
 
-// Рендер карточек проектов
+// Карточкалар рендер
 const cards = document.getElementById('projectCards');
 function renderCards(list) {
   cards.innerHTML = '';
@@ -85,7 +63,7 @@ function renderCards(list) {
 }
 renderCards(projects);
 
-// Фильтрация по категориям (.filter)
+// Фильтр батырмалары
 document.querySelectorAll('.filters button').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
@@ -96,7 +74,7 @@ document.querySelectorAll('.filters button').forEach(btn => {
   });
 });
 
-// Модалка проекта
+// Модалка
 const modal = document.getElementById('projectModal');
 const modalTitle = document.getElementById('modalTitle');
 const modalDesc = document.getElementById('modalDesc');
@@ -114,14 +92,14 @@ function openProjectModal(projectId) {
   }
 }
 
-// Параллакс звёзд — лёгкий сдвиг слоёв
+// Параллакс эффект жұлдыздарға
 const layers = document.querySelectorAll('.layer');
 document.addEventListener('mousemove', (e) => {
   const { innerWidth: w, innerHeight: h } = window;
-  const x = (e.clientX / w - 0.5) * 2; // -1..1
+  const x = (e.clientX / w - 0.5) * 2;
   const y = (e.clientY / h - 0.5) * 2;
   layers.forEach((layer, i) => {
-    const depth = (i + 1) * 4; // разная глубина
+    const depth = (i + 1) * 4;
     layer.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
   });
 });
