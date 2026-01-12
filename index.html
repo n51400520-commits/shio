@@ -1,69 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="kk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ғарыш саяхаты — Портфолио</title>
-  <link rel="stylesheet" href="styles.css" />
-  <meta name="view-transition" content="same-origin">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <nav class="topbar">
-      <a class="brand" href="/" data-nav>🚀 Ғарыш саяхаты</a>
-      <button class="menu-btn" aria-label="Меню" data-nav>☰</button>
-    </nav>
+    <h1>🚀 Ғарыш саяхаты</h1>
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <h1>Сәлем! Менің ғарыштық портфолиом</h1>
-      <p>Жобаларым — планеталар сияқты: әрқайсысы өз орбитасында.</p>
-      <a href="#projects" class="cta" data-nav>Жобаларға өту</a>
-      <div class="stars" aria-hidden="true">
-        <div class="layer layer-1"></div>
-        <div class="layer layer-2"></div>
-        <div class="layer layer-3"></div>
-      </div>
-    </section>
-
-    <section class="carousel" id="planets" aria-label="Планеталар каруселі">
+    <section>
       <h2>Планеталар</h2>
-      <div class="carousel-track" id="carouselTrack">
-        <!-- Планеты генерируются из JS -->
-      </div>
-    </section>
+      <p>Менің жобаларым — әр планета сияқты өз орбитасында.</p>
 
-    <section class="projects" id="projects">
-      <h2>Жобалар</h2>
+      <!-- Меркурий -->
+      <img src="assets/mercury.png" alt="Меркурий" width="150" />
 
-      <div class="filters">
-        <button data-filter="all" class="active">Барлығы</button>
-        <button data-filter="frontend">Фронтенд</button>
-        <button data-filter="design">Дизайн</button>
-        <button data-filter="games">Ойындар</button>
-      </div>
+      <!-- Венера -->
+      <img src="assets/venus.png" alt="Шолпан" width="150" />
 
-      <div class="cards" id="projectCards">
-        <!-- Карточки генерируются из JS -->
-      </div>
+      <!-- Жер -->
+      <img src="assets/earth.png" alt="Жер" width="150" />
+
+      <!-- Марс -->
+      <img src="assets/mars.png" alt="Марс" width="150" />
     </section>
   </main>
 
   <footer>
     <p>© 2026. Байланыс: <a href="mailto:you@example.com">you@example.com</a></p>
   </footer>
-
-  <dialog id="projectModal">
-    <article>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <button id="modalClose">Жабу</button>
-    </article>
-  </dialog>
-
-  <script src="app.js" defer></script>
-  <img src="assets/earth.png" alt="Жер" />
-
 </body>
 </html>
